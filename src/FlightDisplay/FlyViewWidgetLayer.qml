@@ -113,7 +113,7 @@ Item {
         anchors.right:              parent.right
         width:                      _rightPanelWidth
         spacing:                    _toolsMargin
-        visible:                    QGroundControl.corePlugin.options.flyView.showInstrumentPanel && multiVehiclePanelSelector.showSingleVehiclePanel
+        visible:                    false/*QGroundControl.corePlugin.options.flyView.showInstrumentPanel && multiVehiclePanelSelector.showSingleVehiclePanel*/
         availableHeight:            parent.height - y - _toolsMargin
 
         property real rightInset: visible ? parent.width - x : 0
@@ -125,6 +125,7 @@ Item {
         anchors.right:          parent.right
         width:                  _rightPanelWidth
         state:                  _verticalCenter ? "verticalCenter" : "topAnchor"
+        visible:                false
         states: [
             State {
                 name: "verticalCenter"
@@ -151,7 +152,7 @@ Item {
         id:                 telemetryPanel
         x:                  recalcXPosition()
         anchors.margins:    _toolsMargin
-
+        visible:            true
         // States for custom layout support
         states: [
             State {
