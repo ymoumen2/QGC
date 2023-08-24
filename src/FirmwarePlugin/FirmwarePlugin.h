@@ -88,6 +88,9 @@ public:
     /// list available from the firmware. Call will be made again if advanced mode changes.
     virtual QStringList flightModes(Vehicle* /*vehicle*/) { return QStringList(); }
 
+    ///Change flight modes list depending on enabling/disabling UI Advanced mode.
+    virtual void setFlightModes                  (bool showAdvancedUI){};
+
     /// Returns the list of additional flight modes to add to the list for joystick button actions.
     /// Call will be made again if advanced mode changes.
     virtual QStringList extraJoystickFlightModes(Vehicle* /*vehicle*/) { return QStringList(); }

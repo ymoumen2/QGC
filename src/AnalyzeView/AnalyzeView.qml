@@ -89,7 +89,7 @@ Rectangle {
                     setupIndicator:     false
                     exclusiveGroup:     setupButtonGroup
                     text:               modelData.title
-
+                    visible:            (modelData.title === "Log Download")
                     onClicked: {
                         panelLoader.source  = modelData.url
                         panelLoader.title   = modelData.title

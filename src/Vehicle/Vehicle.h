@@ -838,7 +838,7 @@ public slots:
     void setVtolInFwdFlight                 (bool vtolInFwdFlight);
     void _offlineFirmwareTypeSettingChanged (QVariant varFirmwareType); // Should only be used by MissionControler to set firmware from Plan file
     void _offlineVehicleTypeSettingChanged  (QVariant varVehicleType);  // Should only be used by MissionController to set vehicle type from Plan file
-
+    void changeflightModes                  (bool showAdvancedUI);
 signals:
     void coordinateChanged              (QGeoCoordinate coordinate);
     void joystickEnabledChanged         (bool enabled);
@@ -847,6 +847,8 @@ signals:
     void armedPositionChanged();
     void armedChanged                   (bool armed);
     void flightModeChanged              (const QString& flightMode);
+    //Change flight modes list when switching between Advanced and Simplified UI modes.
+    void flightModesListChanged             ();
     void flyingChanged                  (bool flying);
     void landingChanged                 (bool landing);
     void guidedModeChanged              (bool guidedMode);

@@ -385,7 +385,7 @@ ApplicationWindow {
                         text:               qsTr("Analyze Tools")
                         imageResource:      "/qmlimages/Analyze.svg"
                         imageColor:         qgcPal.text
-                        visible:            QGroundControl.corePlugin.showAdvancedUI
+                        visible:            true/*QGroundControl.corePlugin.showAdvancedUI*/
                         onClicked: {
                             if (!mainWindow.preventViewSwitch()) {
                                 toolSelectDialog.hideDialog()
@@ -401,7 +401,7 @@ ApplicationWindow {
                         text:               qsTr("Application Settings")
                         imageResource:      "/res/QGCLogoFull"
                         imageColor:         "transparent"
-                        visible:            !QGroundControl.corePlugin.options.combineSettingsAndSetup
+                        visible:            !QGroundControl.corePlugin.options.combineSettingsAndSetup && QGroundControl.corePlugin.showAdvancedUI
                         onClicked: {
                             if (!mainWindow.preventViewSwitch()) {
                                 toolSelectDialog.hideDialog()
@@ -434,16 +434,19 @@ ApplicationWindow {
                                 id:                 easterEggMouseArea
                                 anchors.topMargin:  -versionLabel.height
                                 anchors.fill:       parent
-
+                                property int clickCount: 0
                                 onClicked: {
+                                    clickCount++
                                     if (mouse.modifiers & Qt.ControlModifier) {
                                         QGroundControl.corePlugin.showTouchAreas = !QGroundControl.corePlugin.showTouchAreas
-                                    } else if (mouse.modifiers & Qt.ShiftModifier) {
+                                        clickCount = 0
+                                    } else if (clickCount === 5) {
                                         if(!QGroundControl.corePlugin.showAdvancedUI) {
                                             advancedModeConfirmation.open()
                                         } else {
                                             QGroundControl.corePlugin.showAdvancedUI = false
                                         }
+                                        clickCount = 0
                                     }
                                 }
 

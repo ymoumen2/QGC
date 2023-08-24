@@ -406,7 +406,7 @@ void Vehicle::_commonInit()
 
     // Flight modes can differ based on advanced mode
     connect(_toolbox->corePlugin(), &QGCCorePlugin::showAdvancedUIChanged, this, &Vehicle::flightModesChanged);
-
+    connect(_toolbox->corePlugin(), &QGCCorePlugin::showAdvancedUIChanged, this, &Vehicle::changeflightModes);
     connect(_imageProtocolManager, &ImageProtocolManager::imageReady, this, &Vehicle::_imageProtocolImageReady);
 
     // Build FactGroup object model
@@ -554,6 +554,12 @@ void Vehicle::_offlineHoverSpeedSettingChanged(QVariant value)
 {
     _defaultHoverSpeed = value.toDouble();
     emit defaultHoverSpeedChanged(_defaultHoverSpeed);
+}
+
+void Vehicle::changeflightModes(bool showAdvancedUI)
+{
+    _firmwarePlugin->setFlightModes(showAdvancedUI);
+    emit flightModesListChanged();
 }
 
 QString Vehicle::firmwareTypeString() const
